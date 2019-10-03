@@ -11,7 +11,7 @@ spec:
           image: us.gcr.io/plasmic/speech-to-landmarks
           env:
             - name: INPUT_TEXT
-              value: "$SPEECH_TO_LANDMARKS_INPUT_TEXT"
+              value: "$INPUT_TEXT"
           command: ["bash", "-c",
                     "mkdir /data && \
                      mkdir /models && \
