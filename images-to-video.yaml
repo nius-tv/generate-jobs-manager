@@ -11,7 +11,7 @@ spec:
           image: us.gcr.io/plasmic/render-video
           command: ["bash", "-c",
                     "mkdir /data && \
-                     gcsfuse -o nonempty --only-dir $STORY_ID $GCS_BUCKET_NAME /data && \
+                     gcsfuse -o nonempty --only-dir {STORY_ID} $GCS_BUCKET_NAME /data && \
                      ffmpeg \
                        -y \
                        -framerate 30 \
@@ -20,7 +20,7 @@ spec:
                        -pix_fmt yuv420p \
                        /data/no-audio.mp4 && \
                      gcloud pubsub topics publish completed-images-to-video \
-                       --message \"$STORY_ID\""]
+                       --message \"{STORY_ID}\""]
           workingDir: /app
           securityContext:
             privileged: true

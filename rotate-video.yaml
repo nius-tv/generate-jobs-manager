@@ -11,14 +11,14 @@ spec:
           image: us.gcr.io/plasmic/render-video
           command: ["bash", "-c",
                     "mkdir /data && \
-                     gcsfuse -o nonempty --only-dir $STORY_ID $GCS_BUCKET_NAME /data && \
+                     gcsfuse -o nonempty --only-dir {STORY_ID} $GCS_BUCKET_NAME /data && \
                      ffmpeg \
                        -y \
                        -i /data/video.mp4 \
                        -vf transpose=1 \
                        /data/video-rotated.mp4 && \
                      gcloud pubsub topics publish completed-rotate-video \
-                       --message \"$STORY_ID\""]
+                       --message \"{STORY_ID}\""]
           workingDir: /app
           securityContext:
             privileged: true

@@ -17,19 +17,20 @@ def create_story_dir(story_id):
 
 def launch_job(story_id, job_name):
 	story_dir_path = create_story_dir(story_id)
-	job_file_path = prepare_job(story_dir_path, job_name)
+	job_file_path = prepare_job(story_dir_path, story_id, job_name)
 	cmd = 'kubectl apply -f {}'.format(job_file_path)
 	print('exec:', cmd)
 	cmd = ['bash', '-c', cmd]
 	subprocess.call(cmd)
 
 
-def prepare_job(output_dir_path, job_name):
+def prepare_job(output_dir_path, story_id, job_name):
 	filename = '{}.yaml'.format(job_name)
 	with open(filename) as f:
 		data = f.read()
 
 	data = envsubst(data)
+	data = data.replace('{STORY_ID}', story_id)
 
 	output_file_path = '{}/{}.yaml'.format(output_dir_path, job_name)
 	with open(output_file_path, 'w') as f:

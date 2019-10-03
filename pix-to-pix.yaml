@@ -14,12 +14,12 @@ spec:
                      mkdir /data/test_A && \
                      mkdir /data/inferred && \
                      mkdir /models && \
-                     gcsfuse -o nonempty --only-dir $STORY_ID/inference $GCS_BUCKET_NAME /data/test_A && \
-                     gcsfuse -o nonempty --only-dir $STORY_ID/inferred $GCS_BUCKET_NAME /data/inferred && \
+                     gcsfuse -o nonempty --only-dir {STORY_ID}/inference $GCS_BUCKET_NAME /data/test_A && \
+                     gcsfuse -o nonempty --only-dir {STORY_ID}/inferred $GCS_BUCKET_NAME /data/inferred && \
                      gcsfuse -o nonempty --only-dir models $GCS_BUCKET_NAME /models && \
                      python3 inference.py && \
                      gcloud pubsub topics publish completed-pix-to-pix \
-                       --message \"$STORY_ID\""]
+                       --message \"{STORY_ID}\""]
           workingDir: /app
           securityContext:
             privileged: true
