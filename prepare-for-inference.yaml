@@ -12,7 +12,7 @@ spec:
           command: ["bash", "-c",
                     "mkdir /data && \
                      mkdir /models && \
-                     gcsfuse -o nonempty --only-dir $JOB_NAME $GCS_BUCKET_NAME /data && \
+                     gcsfuse -o nonempty --only-dir $STORY_ID $GCS_BUCKET_NAME /data && \
                      gcsfuse -o nonempty --only-dir models $GCS_BUCKET_NAME /models && \
                      python3 prepare_for_inference.py && \
                      gcloud pubsub topics publish completed-prepare-for-inference \
