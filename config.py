@@ -28,3 +28,4 @@ JOBS = [
 	}
 ]
 PROJECT_ID = 'plasmic-artefacts'
+TMP_STORY_DIR = '/tmp'

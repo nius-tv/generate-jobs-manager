@@ -1,28 +1,54 @@
+import os
 import subprocess
 import threading
 import time
 
 from config import *
+from envsubst import envsubst
 from google.cloud import pubsub_v1
 
 
-def launch_job(name):
-	cmd = 'kubectl apply -f {}.yaml'.format(name)
+def create_story_dir(story_id):
+	dir_path = '{}/{}'.format(TMP_STORY_DIR, story_id)
+	if not os.path.isfile(dir_path):
+		os.mkdir(dir_path)
+	return dir_path
+
+
+def launch_job(job_name, story_id):
+	story_dir_path = create_story_dir(story_id)
+	job_file_path = prepare_job(story_dir_path, job_name)
+	cmd = 'kubectl apply -f {}'.format(job_file_path)
 	print('exec:', cmd)
 	cmd = ['bash', '-c', cmd]
 	subprocess.call(cmd)
 
 
+def prepare_job(output_dir_path, job_name):
+	filename = '{}.yaml'.format(job_name)
+	with open(filename) as f:
+		data = f.read()
+
+	data = envsubst(data)
+
+	output_file_path = '{}/{}.yaml'.format(output_dir_path, job_name)
+	with open(output_file_path, 'w') as f:
+		f.write(data)
+
+	return output_file_path
+
+
 def subscribe(job):
 	subscription = job['subscription']
+	next_job = job.get('next-job')
 	print('subscribed to:', subscription)
 
 	def callback(message):
-		data = message.data.decode('utf-8') # binary to utf-8 string
+		story_id = message.data.decode('utf-8') # binary to utf-8 string
 		print('message received:', data)
 
-		if 'next-job' in job:
-			launch_job(job['next-job'])
+		if next_job:
+			launch_job(next_job, story_id)
 		else:
 			print('finished!')
 
