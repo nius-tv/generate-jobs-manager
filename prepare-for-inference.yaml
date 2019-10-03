@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: prepare-for-inference
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: prepare-for-inference
+          image: us.gcr.io/plasmic/speech-to-landmarks
+          command: ["bash", "-c",
+                    "mkdir /data && \
+                     mkdir /models && \
+                     gcsfuse -o nonempty --only-dir $JOB_NAME $GCS_BUCKET_NAME /data && \
+                     gcsfuse -o nonempty --only-dir models $GCS_BUCKET_NAME /models && \
+                     python3 prepare_for_inference.py && \
+                     gcloud pubsub topics publish completed-prepare-for-inference \
+                       --message \"\""]
+          workingDir: /app
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+      restartPolicy: Never
