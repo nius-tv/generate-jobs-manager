@@ -1,0 +1,31 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: add-audio-to-video
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: add-audio-to-video
+          image: us.gcr.io/plasmic/render-video
+          command: ["bash", "-c",
+                    "mkdir /data && \
+                     gcsfuse -o nonempty --only-dir $JOB_NAME $GCS_BUCKET_NAME /data && \
+                     ffmpeg \
+                       -y \
+                       -i /data/no-audio.mp4 \
+                       -i /data/audio.wav \
+                       -c:v copy \
+                       -c:a aac \
+                       -strict experimental \
+                       /data/video.mp4 && \
+                     gcloud pubsub topics publish completed-add-audio-to-video \
+                       --message \"\""]
+          workingDir: /app
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+      restartPolicy: Never
