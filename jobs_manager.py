@@ -15,7 +15,7 @@ def create_story_dir(story_id):
 	return dir_path
 
 
-def launch_job(job_name, story_id):
+def launch_job(story_id, job_name):
 	story_dir_path = create_story_dir(story_id)
 	job_file_path = prepare_job(story_dir_path, job_name)
 	cmd = 'kubectl apply -f {}'.format(job_file_path)
@@ -39,20 +39,20 @@ def prepare_job(output_dir_path, job_name):
 
 
 def subscribe(job):
-	subscription = job['subscription']
-	next_job = job.get('next-job')
-	print('subscribed to:', subscription)
-
 	def callback(message):
 		story_id = message.data.decode('utf-8') # binary to utf-8 string
-		print('message received:', data)
+		print('story id:', story_id)
 
 		if next_job:
-			launch_job(next_job, story_id)
+			launch_job(story_id, next_job)
 		else:
 			print('finished!')
 
 		message.ack()
+
+	subscription = job['subscription']
+	next_job = job.get('next-job')
+	print('subscribed to:', subscription)
 
 	subscriber = pubsub_v1.SubscriberClient()
 	subscription_path = subscriber.subscription_path(PROJECT_ID, subscription)
