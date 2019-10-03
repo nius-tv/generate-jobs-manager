@@ -10,7 +10,7 @@ from google.cloud import pubsub_v1
 
 def create_story_dir(story_id):
 	dir_path = '{}/{}'.format(TMP_STORY_DIR, story_id)
-	if not os.path.isfile(dir_path):
+	if not os.path.exists(dir_path):
 		os.mkdir(dir_path)
 	return dir_path
 
