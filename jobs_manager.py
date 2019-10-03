@@ -41,12 +41,11 @@ def prepare_job(output_dir_path, job_name):
 def subscribe(job):
 	def callback(message):
 		story_id = message.data.decode('utf-8') # binary to utf-8 string
-		print('story id:', story_id)
 
 		if next_job:
 			launch_job(story_id, next_job)
 		else:
-			print('finished!')
+			print('story id "{}" completed successfully'.format(story_id))
 
 		message.ack()
 
