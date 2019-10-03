@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: speech-to-landmarks
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: speech-to-landmarks
+          image: us.gcr.io/plasmic/speech-to-landmarks
+          env:
+            - name: INPUT_TEXT
+              value: "$SPEECH_TO_LANDMARKS_INPUT_TEXT"
+          command: ["bash", "-c",
+                    "mkdir /data && \
+                     mkdir /models && \
+                     gcsfuse -o nonempty --only-dir $JOB_NAME $GCS_BUCKET_NAME /data && \
+                     gcsfuse -o nonempty --only-dir models $GCS_BUCKET_NAME /models && \
+                     python3 speech_to_landmarks.py && \
+                     gcloud pubsub topics publish completed-speech-to-landmarks \
+                       --message \"\""]
+          workingDir: /app
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+      restartPolicy: Never
