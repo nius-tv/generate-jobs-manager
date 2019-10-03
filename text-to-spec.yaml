@@ -25,7 +25,7 @@ spec:
                      gcsfuse -o nonempty --only-dir models $GCS_BUCKET_NAME /models && \
                      python3 inference.py && \
                      gcloud pubsub topics publish completed-text-to-spec \
-                       --message \"\""]
+                       --message \"$STORY_ID\""]
           workingDir: /app
           securityContext:
             privileged: true

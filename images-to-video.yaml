@@ -20,7 +20,7 @@ spec:
                        -pix_fmt yuv420p \
                        /data/no-audio.mp4 && \
                      gcloud pubsub topics publish completed-images-to-video \
-                       --message \"\""]
+                       --message \"$STORY_ID\""]
           workingDir: /app
           securityContext:
             privileged: true

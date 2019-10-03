@@ -21,7 +21,7 @@ spec:
                        -strict experimental \
                        /data/video.mp4 && \
                      gcloud pubsub topics publish completed-add-audio-to-video \
-                       --message \"\""]
+                       --message \"$STORY_ID\""]
           workingDir: /app
           securityContext:
             privileged: true

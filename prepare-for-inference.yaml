@@ -16,7 +16,7 @@ spec:
                      gcsfuse -o nonempty --only-dir models $GCS_BUCKET_NAME /models && \
                      python3 prepare_for_inference.py && \
                      gcloud pubsub topics publish completed-prepare-for-inference \
-                       --message \"\""]
+                       --message \"$STORY_ID\""]
           workingDir: /app
           securityContext:
             privileged: true

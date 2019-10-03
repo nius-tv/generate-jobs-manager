@@ -18,7 +18,7 @@ spec:
                        -vf transpose=1 \
                        /data/video-rotated.mp4 && \
                      gcloud pubsub topics publish completed-rotate-video \
-                       --message \"\""]
+                       --message \"$STORY_ID\""]
           workingDir: /app
           securityContext:
             privileged: true
