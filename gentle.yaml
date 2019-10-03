@@ -1,0 +1,31 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: gentle
+spec:
+  selector:
+    app: gentle
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8765
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gentle
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: gentle
+  template:
+    metadata:
+      labels:
+        app: gentle
+    spec:
+      containers:
+        - name: gentle
+          image: us.gcr.io/plasmic/lowerquality-gentle
+          ports:
+            - containerPort: 8765
