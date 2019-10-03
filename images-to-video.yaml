@@ -1,0 +1,30 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: images-to-video
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: images-to-video
+          image: us.gcr.io/plasmic/render-video
+          command: ["bash", "-c",
+                    "mkdir /data && \
+                     gcsfuse -o nonempty --only-dir $JOB_NAME $GCS_BUCKET_NAME /data && \
+                     ffmpeg \
+                       -y \
+                       -framerate 30 \
+                       -i /data/inferred/%010d.png \
+                       -c:v libx264 \
+                       -pix_fmt yuv420p \
+                       /data/no-audio.mp4 && \
+                     gcloud pubsub topics publish completed-images-to-video \
+                       --message \"\""]
+          workingDir: /app
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+      restartPolicy: Never
