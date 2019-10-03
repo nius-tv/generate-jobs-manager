@@ -1,5 +1,9 @@
 JOBS = [
 	{
+		'subscription': 'init-generate',
+		'next-job': 'text-to-spec'
+	},
+	{
 		'subscription': 'completed-text-to-spec',
 		'next-job': 'speech-to-landmarks'
 	},
