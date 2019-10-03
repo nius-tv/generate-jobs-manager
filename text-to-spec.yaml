@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: text-to-spec
+spec:
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: text-to-spec
+          image: us.gcr.io/plasmic/text-to-spec
+          env:
+            - name: INPUT_TEXT
+              value: "$TEXT_TO_SPEC_INPUT_TEXT"
+            - name: SAMPLE_RATE
+              value: "$TEXT_TO_SPEC_SAMPLE_RATE"
+            - name: SIGMA
+              value: "$TEXT_TO_SPEC_SIGMA"
+            - name: STRENGTH
+              value: "$TEXT_TO_SPEC_STRENGTH"
+          command: ["bash", "-c",
+                    "mkdir /data && \
+                     mkdir /models && \
+                     gcsfuse -o nonempty --only-dir $JOB_NAME $GCS_BUCKET_NAME /data && \
+                     gcsfuse -o nonempty --only-dir models $GCS_BUCKET_NAME /models && \
+                     python3 inference.py && \
+                     gcloud pubsub topics publish completed-text-to-spec \
+                       --message \"\""]
+          workingDir: /app
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+          resources:
+            limits:
+              nvidia.com/gpu: 1 # request 1 GPU
+      restartPolicy: Never
