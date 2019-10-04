@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: prepare-for-inference
+  name: {STORY_ID}-prepare-for-inference
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

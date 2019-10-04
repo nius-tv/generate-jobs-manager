@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: add-audio-to-video
+  name: {STORY_ID}-add-audio-to-video
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

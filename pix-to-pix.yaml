@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: pix-to-pix
+  name: {STORY_ID}-pix-to-pix
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: images-to-video
+  name: {STORY_ID}-images-to-video
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

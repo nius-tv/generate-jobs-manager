@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: rotate-video
+  name: {STORY_ID}-rotate-video
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

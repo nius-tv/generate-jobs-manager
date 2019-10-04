@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: speech-to-landmarks
+  name: {STORY_ID}-speech-to-landmarks
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

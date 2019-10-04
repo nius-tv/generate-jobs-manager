@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: text-to-spec
+  name: {STORY_ID}-text-to-spec
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0
