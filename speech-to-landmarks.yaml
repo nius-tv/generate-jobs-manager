@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: speech-to-landmarks
 spec:
+  backoffLimit: 0
   ttlSecondsAfterFinished: 0
   template:
     spec:

@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: pix-to-pix
 spec:
+  backoffLimit: 0
   ttlSecondsAfterFinished: 0
   template:
     spec:

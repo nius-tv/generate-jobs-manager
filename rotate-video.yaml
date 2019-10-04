@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: rotate-video
 spec:
+  backoffLimit: 0
   ttlSecondsAfterFinished: 0
   template:
     spec:

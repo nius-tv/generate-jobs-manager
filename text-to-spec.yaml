@@ -3,6 +3,7 @@ kind: Job
 metadata:
   name: text-to-spec
 spec:
+  backoffLimit: 0
   ttlSecondsAfterFinished: 0
   template:
     spec:
