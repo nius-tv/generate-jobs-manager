@@ -1,6 +1,10 @@
 JOBS = [
 	{
 		'subscription': 'init-generate',
+		'next-job': 'init-story'
+	},
+	{
+		'subscription': 'completed-init-story',
 		'next-job': 'text-to-spec'
 	},
 	{
