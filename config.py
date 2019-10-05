@@ -35,5 +35,5 @@ JOBS = [
 		'subscription': 'completed-rotate-video'
 	}
 ]
-PROJECT_ID = 'plasmic-artefacts'
+PROJECT_NAME = 'plasmic-artefacts'
 TMP_STORY_DIR = '/tmp'
