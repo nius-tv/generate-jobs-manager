@@ -16,6 +16,8 @@ spec:
       containers:
         - name: jobs-manager
           image: us.gcr.io/plasmic/generate-jobs-manager
+          command: ["bash", "-c", "python3 jobs_manager.py"]
+          workingDir: /app
           env:
             - name: GCS_BUCKET_NAME
               value: "$GCS_BUCKET_NAME"
