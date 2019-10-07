@@ -1,0 +1,31 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: jobs-manager
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: jobs-manager
+  template:
+    metadata:
+      labels:
+        app: jobs-manager
+    spec:
+      serviceAccountName: jobs-manager
+      containers:
+        - name: jobs-manager
+          image: us.gcr.io/plasmic/generate-jobs-manager
+          env:
+            - name: GCS_BUCKET_NAME
+              value: "$GCS_BUCKET_NAME"
+            - name: REDIS_HOST
+              value: "$REDIS_HOST"
+            - name: REDIS_PORT
+              value: "$REDIS_PORT"
+            - name: TEXT_TO_SPEC_SIGMA
+              value: "$TEXT_TO_SPEC_SIGMA"
+            - name: TEXT_TO_SPEC_SAMPLE_RATE
+              value: "$TEXT_TO_SPEC_SAMPLE_RATE"
+            - name: TEXT_TO_SPEC_STRENGTH
+              value: "$TEXT_TO_SPEC_STRENGTH"
