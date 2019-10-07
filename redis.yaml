@@ -16,6 +16,6 @@ metadata:
   name: memstore-redis
 subsets:
   - addresses:
-      - ip: "$REDIS_HOST"
+      - ip: "$REDIS_IP"
     ports:
       - port: 6379
