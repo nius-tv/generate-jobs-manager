@@ -19,6 +19,8 @@ spec:
           command: ["bash", "-c", "python3 jobs_manager.py"]
           workingDir: /app
           env:
+            - name: AUDIO_CODEC
+              value: "$AUDIO_CODEC"
             - name: GCS_BUCKET_NAME
               value: "$GCS_BUCKET_NAME"
             - name: REDIS_HOST
