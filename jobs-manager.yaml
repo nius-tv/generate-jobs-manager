@@ -39,3 +39,5 @@ spec:
               value: "$TEXT_TO_SPEC_STRENGTH"
             - name: VIDEO_CODEC
               value: "$VIDEO_CODEC"
+            - name: VIDEO_FMT
+              value: "$VIDEO_FMT"
