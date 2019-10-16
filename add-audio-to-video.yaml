@@ -17,7 +17,6 @@ spec:
                        -y \
                        -i /data/no-audio.$VIDEO_FMT \
                        -i /data/audio.wav \
-                       -strict experimental \
                        -c:a $AUDIO_CODEC \
                        -c:v $VIDEO_CODEC \
                        /data/video.$VIDEO_FMT && \
