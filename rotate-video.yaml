@@ -18,6 +18,7 @@ spec:
                        -i /data/video.$VIDEO_FMT \
                        -vf transpose=1 \
                        -c:a $AUDIO_CODEC \
+                       -c:v $VIDEO_CODEC \
                        /data/video-rotated.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-rotate-video \
                        --message \"{STORY_ID}\""]
