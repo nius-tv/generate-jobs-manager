@@ -19,6 +19,7 @@ spec:
                        -i /data/audio.wav \
                        -c:a $AUDIO_CODEC \
                        -c:v $VIDEO_CODEC \
+                       -pix_fmt $PIXEL_FMT \
                        /data/video.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-add-audio-to-video \
                        --message \"{STORY_ID}\""]
