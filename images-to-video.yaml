@@ -19,7 +19,7 @@ spec:
                        -i /data/inferred/%010d.png \
                        -c:v libx264 \
                        -pix_fmt yuv420p \
-                       /data/no-audio.mp4 && \
+                       /data/no-audio.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-images-to-video \
                        --message \"{STORY_ID}\""]
           workingDir: /app

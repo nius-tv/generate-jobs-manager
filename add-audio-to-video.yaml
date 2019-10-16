@@ -15,12 +15,12 @@ spec:
                      gcsfuse -o nonempty --only-dir {STORY_ID} $GCS_BUCKET_NAME /data && \
                      ffmpeg \
                        -y \
-                       -i /data/no-audio.mp4 \
+                       -i /data/no-audio.$VIDEO_FMT \
                        -i /data/audio.wav \
                        -c:v copy \
                        -c:a aac \
                        -strict experimental \
-                       /data/video.mp4 && \
+                       /data/video.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-add-audio-to-video \
                        --message \"{STORY_ID}\""]
           workingDir: /app
