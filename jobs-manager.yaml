@@ -21,6 +21,8 @@ spec:
           env:
             - name: AUDIO_CODEC
               value: "$AUDIO_CODEC"
+            - name: FPS
+              value: "$FPS"
             - name: GCS_BUCKET_NAME
               value: "$GCS_BUCKET_NAME"
             - name: REDIS_HOST
