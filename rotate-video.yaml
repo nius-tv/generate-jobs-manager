@@ -15,9 +15,9 @@ spec:
                      gcsfuse -o nonempty --only-dir {STORY_ID} $GCS_BUCKET_NAME /data && \
                      ffmpeg \
                        -y \
-                       -i /data/video.mp4 \
+                       -i /data/video.$VIDEO_FMT \
                        -vf transpose=1 \
-                       /data/video-rotated.mp4 && \
+                       /data/video-rotated.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-rotate-video \
                        --message \"{STORY_ID}\""]
           workingDir: /app
