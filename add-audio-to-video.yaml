@@ -18,8 +18,8 @@ spec:
                        -i /data/no-audio.$VIDEO_FMT \
                        -i /data/audio.wav \
                        -c:v copy \
-                       -c:a aac \
                        -strict experimental \
+                       -c:a $AUDIO_CODEC \
                        /data/video.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-add-audio-to-video \
                        --message \"{STORY_ID}\""]
