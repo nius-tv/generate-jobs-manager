@@ -12,7 +12,10 @@ spec:
           image: us.gcr.io/plasmic/render-video
           command: ["bash", "-c",
                     "mkdir /data && \
-                     gcsfuse -o nonempty --only-dir {STORY_ID} $GCS_BUCKET_NAME /data && \
+                     gcsfuse \
+                       -o nonempty \
+                       --only-dir {STORY_ID} $GCS_BUCKET_NAME \
+                       /data && \
                      ffmpeg \
                        -y \
                        -i /data/no-audio.$VIDEO_FMT \
