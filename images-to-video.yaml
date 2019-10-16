@@ -16,7 +16,6 @@ spec:
                      ffmpeg \
                        -y \
                        -i /data/inferred/%010d.png \
-                       -pix_fmt yuv420p \
                        -framerate 30 \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
