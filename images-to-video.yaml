@@ -15,9 +15,9 @@ spec:
                      gcsfuse -o nonempty --only-dir {STORY_ID} $GCS_BUCKET_NAME /data && \
                      ffmpeg \
                        -y \
-                       -framerate 30 \
                        -i /data/inferred/%010d.png \
                        -pix_fmt yuv420p \
+                       -framerate 30 \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
                        /data/no-audio.$VIDEO_FMT && \
