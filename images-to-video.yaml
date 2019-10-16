@@ -16,7 +16,7 @@ spec:
                      ffmpeg \
                        -y \
                        -i /data/inferred/%010d.png \
-                       -framerate 30 \
+                       -framerate $FPS \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
                        /data/no-audio.$VIDEO_FMT && \
