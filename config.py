@@ -1,3 +1,5 @@
+import os
+
 JOBS = [
 	{
 		'subscription': 'init-generate',
@@ -35,5 +37,5 @@ JOBS = [
 		'subscription': 'completed-rotate-video'
 	}
 ]
-PROJECT_NAME = 'plasmic-artefacts'
+PROJECT_NAME = os.environ.get('PROJECT_NAME')
 TMP_STORY_DIR = '/tmp'
