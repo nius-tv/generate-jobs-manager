@@ -34,7 +34,19 @@ JOBS = [
 		'next-job': 'rotate-video'
 	},
 	{
-		'subscription': 'completed-rotate-video'
+		'subscription': 'completed-rotate-video',
+		'next-job': 'add-presenter-bg'
+	},
+	{
+		'subscription': 'completed-add-presenter-bg',
+		'next-job': 'add-bg-to-story'
+	},
+	{
+		'subscription': 'completed-add-bg-to-story',
+		'next-job': 'add-images-to-story'
+	},
+	{
+		'subscription': 'completed-add-images-to-story'
 	}
 ]
 PROJECT_NAME = os.environ.get('PROJECT_NAME')
