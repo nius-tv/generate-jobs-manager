@@ -27,11 +27,9 @@ spec:
                     "mkdir /data && \
                      mkdir /models && \
                      gcsfuse \
-                       -o nonempty \
                        --only-dir {STORY_ID} $GCS_BUCKET_NAME \
                        /data && \
                      gcsfuse \
-                       -o nonempty \
                        --only-dir models $GCS_BUCKET_NAME \
                        /models && \
                      python3 inference.py && \
