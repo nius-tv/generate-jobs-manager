@@ -18,6 +18,7 @@ spec:
                        $GENERATED_BUCKET_NAME \
                        /data && \
                      gcsfuse \
+                       --implicit-dirs \
                        $LIBRARY_BUCKET_NAME \
                        /library && \
                      python3 add_images.py && \
