@@ -21,7 +21,7 @@ spec:
                        -framerate $FPS \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
-                       /data/no-audio.$VIDEO_FMT && \
+                       /data/story-no-audio.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-images-to-video \
                        --message \"{STORY_ID}\""]
           workingDir: /app

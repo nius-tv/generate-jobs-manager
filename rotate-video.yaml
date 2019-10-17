@@ -17,7 +17,7 @@ spec:
                        /data && \
                      ffmpeg \
                        -y \
-                       -i /data/video.$VIDEO_FMT \
+                       -i /data/story-with-audio.$VIDEO_FMT \
                        -vf transpose=1 \
                        -c:a $AUDIO_CODEC \
                        -c:v $VIDEO_CODEC \
