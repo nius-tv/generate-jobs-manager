@@ -11,8 +11,8 @@ spec:
         - name: init-story
           image: us.gcr.io/plasmic/init-story
           env:
-            - name: GCS_BUCKET_NAME
-              value: "$GCS_BUCKET_NAME"
+            - name: GENERATED_BUCKET_NAME
+              value: "$GENERATED_BUCKET_NAME"
             - name: STORY_ID
               value: "{STORY_ID}"
           command: ["bash", "-c",

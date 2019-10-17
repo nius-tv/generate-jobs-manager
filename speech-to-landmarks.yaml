@@ -21,10 +21,10 @@ spec:
                     "mkdir /data && \
                      mkdir /models && \
                      gcsfuse \
-                       --only-dir {STORY_ID} $GCS_BUCKET_NAME \
+                       --only-dir {STORY_ID} $GENERATED_BUCKET_NAME \
                        /data && \
                      gcsfuse \
-                       --only-dir models $GCS_BUCKET_NAME \
+                       --only-dir models $GENERATED_BUCKET_NAME \
                        /models && \
                      python3 speech_to_landmarks.py && \
                      gcloud pubsub topics publish completed-speech-to-landmarks \

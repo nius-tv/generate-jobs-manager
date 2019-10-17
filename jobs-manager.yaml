@@ -23,8 +23,8 @@ spec:
               value: "$AUDIO_CODEC"
             - name: FPS
               value: "$FPS"
-            - name: GCS_BUCKET_NAME
-              value: "$GCS_BUCKET_NAME"
+            - name: GENERATED_BUCKET_NAME
+              value: "$GENERATED_BUCKET_NAME"
             - name: PIXEL_FMT
               value: "$PIXEL_FMT"
             - name: PROJECT_NAME
