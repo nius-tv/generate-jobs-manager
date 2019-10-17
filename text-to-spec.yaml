@@ -27,10 +27,12 @@ spec:
                     "mkdir /data && \
                      mkdir /models && \
                      gcsfuse \
-                       --only-dir {STORY_ID} $GENERATED_BUCKET_NAME \
+                       --only-dir {STORY_ID} \
+                       $GENERATED_BUCKET_NAME \
                        /data && \
                      gcsfuse \
-                       --only-dir models $GENERATED_BUCKET_NAME \
+                       --only-dir models \
+                       $GENERATED_BUCKET_NAME \
                        /models && \
                      python3 inference.py && \
                      gcloud pubsub topics publish completed-text-to-spec \

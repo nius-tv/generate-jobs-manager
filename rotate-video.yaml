@@ -13,7 +13,8 @@ spec:
           command: ["bash", "-c",
                     "mkdir /data && \
                      gcsfuse \
-                       --only-dir {STORY_ID} $GENERATED_BUCKET_NAME \
+                       --only-dir {STORY_ID} \
+                       $GENERATED_BUCKET_NAME \
                        /data && \
                      ffmpeg \
                        -y \

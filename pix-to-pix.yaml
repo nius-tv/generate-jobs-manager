@@ -16,13 +16,16 @@ spec:
                      mkdir /data/inferred && \
                      mkdir /models && \
                      gcsfuse \
-                       --only-dir {STORY_ID}/inference $GENERATED_BUCKET_NAME \
+                       --only-dir {STORY_ID}/inference \
+                       $GENERATED_BUCKET_NAME \
                        /data/test_A && \
                      gcsfuse \
-                       --only-dir {STORY_ID}/inferred $GENERATED_BUCKET_NAME \
+                       --only-dir {STORY_ID}/inferred \
+                       $GENERATED_BUCKET_NAME \
                        /data/inferred && \
                      gcsfuse \
-                       --only-dir models $GENERATED_BUCKET_NAME \
+                       --only-dir models \
+                       $GENERATED_BUCKET_NAME \
                        /models && \
                      python3 inference.py && \
                      gcloud pubsub topics publish completed-pix-to-pix \
