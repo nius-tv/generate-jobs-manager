@@ -27,10 +27,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-images-to-video',
-		'next-job': 'add-audio-to-video'
+		'next-job': 'add-audio-to-story'
 	},
 	{
-		'subscription': 'completed-add-audio-to-video',
+		'subscription': 'completed-add-audio-to-story',
 		'next-job': 'rotate-video'
 	},
 	{
