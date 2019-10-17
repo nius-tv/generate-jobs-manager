@@ -27,6 +27,8 @@ spec:
               value: "$GENERATED_BUCKET_NAME"
             - name: LIBRARY_BUCKET_NAME
               value: "$LIBRARY_BUCKET_NAME"
+            - name: MODELS_BUCKET_NAME
+              value: "$MODELS_BUCKET_NAME"
             - name: PIXEL_FMT
               value: "$PIXEL_FMT"
             - name: PROJECT_NAME

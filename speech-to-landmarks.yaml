@@ -25,8 +25,8 @@ spec:
                        $GENERATED_BUCKET_NAME \
                        /data && \
                      gcsfuse \
-                       --only-dir models \
-                       $GENERATED_BUCKET_NAME \
+                       --implicit-dirs \
+                       $MODELS_BUCKET_NAME \
                        /models && \
                      python3 speech_to_landmarks.py && \
                      gcloud pubsub topics publish completed-speech-to-landmarks \

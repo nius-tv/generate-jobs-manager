@@ -18,8 +18,8 @@ spec:
                        $GENERATED_BUCKET_NAME \
                        /data && \
                      gcsfuse \
-                       --only-dir models \
-                       $GENERATED_BUCKET_NAME \
+                       --implicit-dirs \
+                       $MODELS_BUCKET_NAME \
                        /models && \
                      python3 prepare_for_inference.py && \
                      gcloud pubsub topics publish completed-prepare-for-inference \
