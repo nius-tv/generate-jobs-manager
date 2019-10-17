@@ -20,7 +20,7 @@ spec:
                        -y \
                        -i /data/audio.wav \
                        -i /data/story-no-audio.$VIDEO_FMT \
-                       -c:a $AUDIO_CODEC \
+                       -c:a copy \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
                        /data/story-with-audio.$VIDEO_FMT && \
