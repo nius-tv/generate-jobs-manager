@@ -12,10 +12,14 @@ spec:
           image: us.gcr.io/plasmic/video-composer
           command: ["bash", "-c",
                     "mkdir /data && \
+                     mkdir /library && \
                      gcsfuse \
                        --only-dir {STORY_ID} \
                        $GENERATED_BUCKET_NAME \
                        /data && \
+                     gcsfuse \
+                       $LIBRARY_BUCKET_NAME \
+                       /library && \
                      python3 add_images.py && \
                      gcloud pubsub topics publish completed-add-images-to-story \
                        --message \"{STORY_ID}\""]
