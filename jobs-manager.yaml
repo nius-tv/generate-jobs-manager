@@ -23,6 +23,8 @@ spec:
               value: "$ARTEFACTS_PROJECT_NAME"
             - name: AUDIO_CODEC
               value: "$AUDIO_CODEC"
+            - name: COMPUTE_PROJECT_NAME
+              value: "$COMPUTE_PROJECT_NAME"
             - name: FPS
               value: "$FPS"
             - name: GENERATED_BUCKET_NAME
@@ -33,8 +35,6 @@ spec:
               value: "$MODELS_BUCKET_NAME"
             - name: PIXEL_FMT
               value: "$PIXEL_FMT"
-            - name: PROJECT_NAME
-              value: "$PROJECT_NAME"
             - name: REDIS_HOST
               value: "$REDIS_HOST"
             - name: REDIS_PORT

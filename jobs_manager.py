@@ -55,7 +55,7 @@ def subscribe(job):
 	print('subscribed to:', subscription)
 
 	subscriber = pubsub_v1.SubscriberClient()
-	subscription_path = subscriber.subscription_path(PROJECT_NAME, subscription)
+	subscription_path = subscriber.subscription_path(COMPUTE_PROJECT_NAME, subscription)
 	subscriber.subscribe(subscription_path, callback=callback)
 
 

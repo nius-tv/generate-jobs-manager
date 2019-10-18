@@ -49,5 +49,5 @@ JOBS = [
 		'subscription': 'completed-add-images-to-story'
 	}
 ]
-PROJECT_NAME = os.environ.get('PROJECT_NAME')
+COMPUTE_PROJECT_NAME = os.environ.get('COMPUTE_PROJECT_NAME')
 TMP_STORY_DIR = '/tmp'
