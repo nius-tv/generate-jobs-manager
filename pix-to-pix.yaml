@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: pix-to-pix
-          image: us.gcr.io/plasmic/pix-to-pix
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/pix-to-pix
           command: ["bash", "-c",
                     "mkdir /data && \
                      mkdir /data/test_A && \

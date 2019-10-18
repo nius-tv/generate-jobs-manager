@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: init-story
-          image: us.gcr.io/plasmic/init-story
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/init-story
           env:
             - name: GENERATED_BUCKET_NAME
               value: "$GENERATED_BUCKET_NAME"

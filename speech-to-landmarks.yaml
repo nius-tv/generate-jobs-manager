@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: speech-to-landmarks
-          image: us.gcr.io/plasmic/speech-to-landmarks
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/speech-to-landmarks
           env:
             - name: REDIS_HOST
               value: "$REDIS_HOST"

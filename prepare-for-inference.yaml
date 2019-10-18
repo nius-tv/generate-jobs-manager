@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: prepare-for-inference
-          image: us.gcr.io/plasmic/speech-to-landmarks
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/speech-to-landmarks
           command: ["bash", "-c",
                     "mkdir /data && \
                      mkdir /models && \

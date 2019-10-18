@@ -15,10 +15,12 @@ spec:
       serviceAccountName: jobs-manager
       containers:
         - name: jobs-manager
-          image: us.gcr.io/plasmic/generate-jobs-manager
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/generate-jobs-manager
           command: ["bash", "-c", "python3 jobs_manager.py"]
           workingDir: /app
           env:
+            - name: ARTEFACTS_PROJECT_NAME
+              value: "$ARTEFACTS_PROJECT_NAME"
             - name: AUDIO_CODEC
               value: "$AUDIO_CODEC"
             - name: FPS

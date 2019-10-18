@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: text-to-spec
-          image: us.gcr.io/plasmic/text-to-spec
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/text-to-spec
           env:
             - name: REDIS_HOST
               value: "$REDIS_HOST"

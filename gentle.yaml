@@ -26,6 +26,6 @@ spec:
     spec:
       containers:
         - name: gentle
-          image: us.gcr.io/plasmic/lowerquality-gentle
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/lowerquality-gentle
           ports:
             - containerPort: 8765

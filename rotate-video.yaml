@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: rotate-video
-          image: us.gcr.io/plasmic/render-video
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/render-video
           command: ["bash", "-c",
                     "mkdir /data && \
                      gcsfuse \

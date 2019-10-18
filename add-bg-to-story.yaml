@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: add-bg-to-story
-          image: us.gcr.io/plasmic/video-composer
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
                     "mkdir /data && \
                      mkdir /library && \
