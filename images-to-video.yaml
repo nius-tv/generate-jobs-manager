@@ -18,7 +18,7 @@ spec:
                        /data && \
                      ffmpeg \
                        -y \
-                       -i /data/inferred/%010d.png \
+                       -i /data/inferred/%010d.$IMG_FMT \
                        -framerate $FPS \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
