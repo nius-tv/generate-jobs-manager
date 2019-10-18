@@ -23,6 +23,8 @@ spec:
               value: "$ARTEFACTS_PROJECT_NAME"
             - name: AUDIO_CODEC
               value: "$AUDIO_CODEC"
+            - name: AUDIO_FMT
+              value: "$AUDIO_FMT"
             - name: COMPUTE_PROJECT_NAME
               value: "$COMPUTE_PROJECT_NAME"
             - name: FPS
