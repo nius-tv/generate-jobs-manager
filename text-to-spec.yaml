@@ -11,10 +11,6 @@ spec:
         - name: text-to-spec
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/text-to-spec
           env:
-            - name: REDIS_HOST
-              value: "$REDIS_HOST"
-            - name: REDIS_PORT
-              value: "$REDIS_PORT"
             - name: SAMPLE_RATE
               value: "$TEXT_TO_SPEC_SAMPLE_RATE"
             - name: SIGMA
