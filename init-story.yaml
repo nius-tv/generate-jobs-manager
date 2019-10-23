@@ -9,12 +9,12 @@ spec:
     spec:
       containers:
         - name: init-story
-          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/init-story
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/render-video
           env:
           command: ["bash", "-c",
-                    "mkdir /data/inference && \
-                     mkdir /data/inferred && \
-                     mkdir /data/landmarks && \
+                    "mkdir -p /data/inference && \
+                     mkdir -p /data/inferred && \
+                     mkdir -p /data/landmarks && \
                      gsutil -m cp -r gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/* /data && \
                      gcloud pubsub topics publish completed-init-story \
                        --message \"{STORY_ID}\""]
