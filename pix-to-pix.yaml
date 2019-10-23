@@ -11,12 +11,14 @@ spec:
         - name: pix-to-pix
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/pix-to-pix
           command: ["bash", "-c",
-                    "mkdir /models && \
+                    "mv /data/inference /data/test_A && \
+                     mkdir /models && \
                      gcsfuse \
                        --implicit-dirs \
                        $MODELS_BUCKET_NAME \
                        /models && \
                      python3 inference.py && \
+                     mv /data/test_A /data/inference && \
                      gcloud pubsub topics publish completed-pix-to-pix \
                        --message \"{STORY_ID}\""]
           workingDir: /app
