@@ -51,3 +51,10 @@ spec:
               value: "$VIDEO_CODEC"
             - name: VIDEO_FMT
               value: "$VIDEO_FMT"
+          volumeMounts:
+            - mountPath: /data
+              name: data
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0

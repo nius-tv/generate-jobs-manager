@@ -11,13 +11,20 @@ spec:
         - name: init-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/init-story
           env:
-            - name: GENERATED_BUCKET_NAME
-              value: "$GENERATED_BUCKET_NAME"
-            - name: STORY_ID
-              value: "{STORY_ID}"
           command: ["bash", "-c",
-                    "python3 init_story.py && \
+                    "mkdir /data/inference && \
+                     mkdir /data/inferred && \
+                     mkdir /data/landmarks && \
+                     mkdir /data/test_A && \
                      gcloud pubsub topics publish completed-init-story \
                        --message \"{STORY_ID}\""]
           workingDir: /app
+          volumeMounts:
+            - mountPath: /data
+              name: data
+              subPath: {STORY_ID}
       restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0

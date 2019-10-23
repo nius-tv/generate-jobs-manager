@@ -11,18 +11,7 @@ spec:
         - name: pix-to-pix
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/pix-to-pix
           command: ["bash", "-c",
-                    "mkdir /data && \
-                     mkdir /data/test_A && \
-                     mkdir /data/inferred && \
-                     mkdir /models && \
-                     gcsfuse \
-                       --only-dir {STORY_ID}/inference \
-                       $GENERATED_BUCKET_NAME \
-                       /data/test_A && \
-                     gcsfuse \
-                       --only-dir {STORY_ID}/inferred \
-                       $GENERATED_BUCKET_NAME \
-                       /data/inferred && \
+                    "mkdir /models && \
                      gcsfuse \
                        --implicit-dirs \
                        $MODELS_BUCKET_NAME \
@@ -40,4 +29,12 @@ spec:
             limits:
               cpu: "$NUM_CPUS"
               nvidia.com/gpu: 1 # request 1 GPU
+          volumeMounts:
+            - mountPath: /data
+              name: data
+              subPath: {STORY_ID}
       restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0

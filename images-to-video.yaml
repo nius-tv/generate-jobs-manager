@@ -24,4 +24,12 @@ spec:
           resources:
             limits:
               cpu: "$NUM_CPUS"
+          volumeMounts:
+            - mountPath: /data
+              name: data
+              subPath: {STORY_ID}
       restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0

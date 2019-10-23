@@ -38,4 +38,12 @@ spec:
             limits:
               cpu: "$NUM_CPUS"
               nvidia.com/gpu: 1 # request 1 GPU
+          volumeMounts:
+            - mountPath: /data
+              name: data
+              subPath: {STORY_ID}
       restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0
