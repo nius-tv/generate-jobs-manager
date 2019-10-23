@@ -15,8 +15,7 @@ spec:
                     "mkdir /data/inference && \
                      mkdir /data/inferred && \
                      mkdir /data/landmarks && \
-                     mkdir /data/test_A && \
-                     gsutil -m cp -r gs://${GENERATED_BUCKET_NAME}/{STORY_ID} /data && \
+                     gsutil -m cp -r gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/* /data && \
                      gcloud pubsub topics publish completed-init-story \
                        --message \"{STORY_ID}\""]
           workingDir: /app
