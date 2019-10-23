@@ -46,7 +46,11 @@ JOBS = [
 		'next-job': 'add-images-to-story'
 	},
 	{
-		'subscription': 'completed-add-images-to-story'
+		'subscription': 'completed-add-images-to-story',
+		'next-job': 'end-story'
+	},
+	{
+		'subscription': 'completed-end-story'
 	}
 ]
 COMPUTE_PROJECT_NAME = os.environ.get('COMPUTE_PROJECT_NAME')
