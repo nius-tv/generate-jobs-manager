@@ -38,5 +38,6 @@ spec:
                 - SYS_ADMIN
           resources:
             limits:
+              cpu: "$NUM_CPUS"
               nvidia.com/gpu: 1 # request 1 GPU
       restartPolicy: Never

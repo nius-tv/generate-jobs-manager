@@ -32,4 +32,7 @@ spec:
             capabilities:
               add:
                 - SYS_ADMIN
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
       restartPolicy: Never

@@ -37,6 +37,8 @@ spec:
               value: "$LIBRARY_BUCKET_NAME"
             - name: MODELS_BUCKET_NAME
               value: "$MODELS_BUCKET_NAME"
+            - name: NUM_CPUS
+              value: "$NUM_CPUS"
             - name: PIXEL_FMT
               value: "$PIXEL_FMT"
             - name: TEXT_TO_SPEC_SIGMA
