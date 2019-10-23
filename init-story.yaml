@@ -10,7 +10,6 @@ spec:
       containers:
         - name: init-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/render-video
-          env:
           command: ["bash", "-c",
                     "mkdir -p /data/inference && \
                      mkdir -p /data/inferred && \
@@ -19,8 +18,8 @@ spec:
                      gcloud pubsub topics publish completed-init-story \
                        --message \"{STORY_ID}\""]
           volumeMounts:
-            - mountPath: /data
-              name: data
+            - name: data
+              mountPath: /data
               subPath: {STORY_ID}
       restartPolicy: Never
       volumes:

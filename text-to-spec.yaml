@@ -15,8 +15,6 @@ spec:
               value: "$TEXT_TO_SPEC_SAMPLE_RATE"
             - name: SIGMA
               value: "$TEXT_TO_SPEC_SIGMA"
-            - name: STORY_ID
-              value: "{STORY_ID}"
             - name: STRENGTH
               value: "$TEXT_TO_SPEC_STRENGTH"
           command: ["bash", "-c",
@@ -39,8 +37,8 @@ spec:
               cpu: "$NUM_CPUS"
               nvidia.com/gpu: 1 # request 1 GPU
           volumeMounts:
-            - mountPath: /data
-              name: data
+            - name: data
+              mountPath: /data
               subPath: {STORY_ID}
       restartPolicy: Never
       volumes:

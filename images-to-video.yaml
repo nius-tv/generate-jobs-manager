@@ -20,13 +20,12 @@ spec:
                        /data/story-no-audio.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-images-to-video \
                        --message \"{STORY_ID}\""]
-          workingDir: /app
           resources:
             limits:
               cpu: "$NUM_CPUS"
           volumeMounts:
-            - mountPath: /data
-              name: data
+            - name: data
+              mountPath: /data
               subPath: {STORY_ID}
       restartPolicy: Never
       volumes:

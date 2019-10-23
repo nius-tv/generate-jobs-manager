@@ -10,15 +10,14 @@ spec:
       containers:
         - name: end-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/render-video
-          env:
           command: ["bash", "-c",
                     "gsutil -m cp -r /data/* gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      rm -rf /data/* && \
                      gcloud pubsub topics publish completed-end-story \
                        --message \"{STORY_ID}\""]
           volumeMounts:
-            - mountPath: /data
-              name: data
+            - name: data
+              mountPath: /data
               subPath: {STORY_ID}
       restartPolicy: Never
       volumes:

@@ -32,8 +32,8 @@ spec:
               cpu: "$NUM_CPUS"
               nvidia.com/gpu: 1 # request 1 GPU
           volumeMounts:
-            - mountPath: /data
-              name: data
+            - name: data
+              mountPath: /data
               subPath: {STORY_ID}
       restartPolicy: Never
       volumes:

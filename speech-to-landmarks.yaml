@@ -10,9 +10,6 @@ spec:
       containers:
         - name: speech-to-landmarks
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/speech-to-landmarks
-          env:
-            - name: STORY_ID
-              value: "{STORY_ID}"
           command: ["bash", "-c",
                     "mkdir /models && \
                      gcsfuse \
@@ -32,8 +29,8 @@ spec:
             limits:
               cpu: "$NUM_CPUS"
           volumeMounts:
-            - mountPath: /data
-              name: data
+            - name: data
+              mountPath: /data
               subPath: {STORY_ID}
       restartPolicy: Never
       volumes:
