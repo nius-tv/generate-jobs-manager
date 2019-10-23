@@ -14,12 +14,7 @@ spec:
             - name: STORY_ID
               value: "{STORY_ID}"
           command: ["bash", "-c",
-                    "mkdir /data && \
-                     mkdir /models && \
-                     gcsfuse \
-                       --only-dir {STORY_ID} \
-                       $GENERATED_BUCKET_NAME \
-                       /data && \
+                    "mkdir /models && \
                      gcsfuse \
                        --implicit-dirs \
                        $MODELS_BUCKET_NAME \

@@ -11,12 +11,7 @@ spec:
         - name: add-audio-to-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/render-video
           command: ["bash", "-c",
-                    "mkdir /data && \
-                     gcsfuse \
-                       --only-dir {STORY_ID} \
-                       $GENERATED_BUCKET_NAME \
-                       /data && \
-                     ffmpeg \
+                    "ffmpeg \
                        -y \
                        -i /data/audio.$AUDIO_FMT \
                        -i /data/story-no-audio.$VIDEO_FMT \
@@ -27,11 +22,6 @@ spec:
                      gcloud pubsub topics publish completed-add-audio-to-story \
                        --message \"{STORY_ID}\""]
           workingDir: /app
-          securityContext:
-            privileged: true
-            capabilities:
-              add:
-                - SYS_ADMIN
           resources:
             limits:
               cpu: "$NUM_CPUS"

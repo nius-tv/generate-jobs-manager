@@ -11,12 +11,7 @@ spec:
         - name: add-images-to-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
-                    "mkdir /data && \
-                     mkdir /library && \
-                     gcsfuse \
-                       --only-dir {STORY_ID} \
-                       $GENERATED_BUCKET_NAME \
-                       /data && \
+                    "mkdir /library && \
                      gcsfuse \
                        --implicit-dirs \
                        $LIBRARY_BUCKET_NAME \
