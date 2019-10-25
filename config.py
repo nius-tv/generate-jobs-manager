@@ -47,6 +47,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-images-to-story',
+		'next-job': 'add-category-logo-to-story'
+	},
+	{
+		'subscription': 'completed-add-category-logo-to-story',
 		'next-job': 'end-story'
 	},
 	{

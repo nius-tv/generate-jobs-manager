@@ -1,0 +1,39 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {STORY_ID}-add-category-logo-to-story
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: add-category-logo-to-story
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
+          command: ["bash", "-c",
+                    "mkdir /library && \
+                     gcsfuse \
+                       --implicit-dirs \
+                       $LIBRARY_BUCKET_NAME \
+                       /library && \
+                     python3 add_category_logo.py && \
+                     gcloud pubsub topics publish completed-add-category-logo-to-story \
+                       --message \"{STORY_ID}\""]
+          workingDir: /app
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {STORY_ID}
+      restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0
