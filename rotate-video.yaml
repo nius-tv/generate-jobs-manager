@@ -9,7 +9,7 @@ spec:
     spec:
       containers:
         - name: rotate-video
-          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/render-video
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
                     "ffmpeg \
                        -y \
