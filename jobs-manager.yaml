@@ -16,8 +16,6 @@ spec:
       containers:
         - name: jobs-manager
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/generate-jobs-manager
-          command: ["bash", "-c", "python3 jobs_manager.py"]
-          workingDir: /app
           env:
             - name: ARTEFACTS_PROJECT_NAME
               value: "$ARTEFACTS_PROJECT_NAME"
@@ -51,6 +49,8 @@ spec:
               value: "$VIDEO_CODEC"
             - name: VIDEO_FMT
               value: "$VIDEO_FMT"
+          command: ["bash", "-c", "python3 jobs_manager.py"]
+          workingDir: /app
           volumeMounts:
             - name: data
               mountPath: /data
