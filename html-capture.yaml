@@ -1,0 +1,38 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {STORY_ID}-html-capture
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: html-capture
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/html-capture
+          env:
+            - name: DURATION
+              value: "60" # screen capture time in seconds
+            - name: FPS
+              value: "$FPS"
+            - name: OUTPUT_PATTERN
+              value: "/data/html-capture/%010d.$IMG_FMT"
+            - name: URL
+              value: "https://storage.googleapis.com/nius-artefacts/news-title/512x1024.html"
+          command: ["bash", "-c",
+                    "node index.js && \
+                     gcloud pubsub topics publish completed-html-capture \
+                       --message \"{STORY_ID}\""]
+          workingDir: /app
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {STORY_ID}
+      restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0

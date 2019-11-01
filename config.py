@@ -51,6 +51,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-category-logo-to-story',
+		'next-job': 'html-capture'
+	},
+	{
+		'subscription': 'completed-html-capture',
 		'next-job': 'normalize-audio'
 	},
 	{
