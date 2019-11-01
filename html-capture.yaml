@@ -18,7 +18,7 @@ spec:
             - name: OUTPUT_PATTERN
               value: "/data/html-capture/%010d.$IMG_FMT"
             - name: URL
-              value: "https://storage.googleapis.com/nius-artefacts/news-title/512x1024.html"
+              value: "$HTML_CAPTURE_URL{STORY_ID}"
           command: ["bash", "-c",
                     "node index.js && \
                      gcloud pubsub topics publish completed-html-capture \
