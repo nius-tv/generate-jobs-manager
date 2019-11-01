@@ -1,0 +1,34 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {STORY_ID}-images-to-dynamic-overlay
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: images-to-dynamic-overlay
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
+          command: ["bash", "-c",
+                    "ffmpeg \
+                       -y \
+                       -framerate $FPS \
+                       -i /data/html-capture/%010d.$IMG_FMT \
+                       -c:v $VIDEO_CODEC \
+                       -pix_fmt $PIXEL_FMT \
+                       /data/dynamic-overlay.$VIDEO_FMT && \
+                     gcloud pubsub topics publish completed-images-to-dynamic-overlay \
+                       --message \"{STORY_ID}\""]
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {STORY_ID}
+      restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0

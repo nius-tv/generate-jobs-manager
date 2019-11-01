@@ -55,6 +55,14 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-html-capture',
+		'next-job': 'images-to-dynamic-overlay'
+	},
+	{
+		'subscription': 'completed-images-to-dynamic-overlay',
+		'next-job': 'add-dynamic-overlay-to-story'
+	},
+	{
+		'subscription': 'completed-add-dynamic-overlay-to-story',
 		'next-job': 'normalize-audio'
 	},
 	{

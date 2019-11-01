@@ -1,0 +1,29 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {STORY_ID}-add-dynamic-overlay-to-story
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: add-dynamic-overlay-to-story
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
+          command: ["bash", "-c",
+                    "python3 add_dynamic_overlay.py && \
+                     gcloud pubsub topics publish completed-add-dynamic-overlay-to-story \
+                       --message \"{STORY_ID}\""]
+          workingDir: /app
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {STORY_ID}
+      restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0
