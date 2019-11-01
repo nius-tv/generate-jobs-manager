@@ -12,7 +12,7 @@ spec:
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/html-capture
           env:
             - name: DURATION
-              value: "60" # screen capture time in seconds
+              value: "$HTML_CAPTURE_DURATION"
             - name: FPS
               value: "$FPS"
             - name: OUTPUT_PATTERN

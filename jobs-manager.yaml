@@ -29,6 +29,8 @@ spec:
               value: "$FPS"
             - name: GENERATED_BUCKET_NAME
               value: "$GENERATED_BUCKET_NAME"
+            - name: HTML_CAPTURE_DURATION
+              value: "$HTML_CAPTURE_DURATION"
             - name: IMG_FMT
               value: "$IMG_FMT"
             - name: LIBRARY_BUCKET_NAME
