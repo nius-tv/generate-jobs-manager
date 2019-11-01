@@ -11,7 +11,8 @@ spec:
         - name: init-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
-                    "mkdir -p /data/inference && \
+                    "mkdir -p /data/html-to-video && \
+                     mkdir -p /data/inference && \
                      mkdir -p /data/inferred && \
                      mkdir -p /data/landmarks && \
                      gsutil -m cp -r gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/* /data && \
