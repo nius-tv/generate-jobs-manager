@@ -11,7 +11,8 @@ spec:
         - name: rotate-video
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
-                    "ffmpeg \
+                    "echo rotate-video `date` >> /data/events.log && \
+                     ffmpeg \
                        -y \
                        -i /data/story-with-audio.$VIDEO_FMT \
                        -vf transpose=1 \
@@ -22,7 +23,8 @@ spec:
                      python3 extract_duration.py && \
                      gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-rotate-video \
-                       --message \"{STORY_ID}\""]
+                       --message \"{STORY_ID}\" && \
+                     echo rotate-video `date` >> /data/events.log"]
           workingDir: /app
           resources:
             limits:

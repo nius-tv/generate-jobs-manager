@@ -11,7 +11,8 @@ spec:
         - name: add-images-to-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
-                    "mkdir /library && \
+                    "echo add-images-to-story `date` >> /data/events.log && \
+                     mkdir /library && \
                      gcsfuse \
                        --implicit-dirs \
                        $LIBRARY_BUCKET_NAME \
@@ -19,7 +20,8 @@ spec:
                      python3 add_images.py && \
                      gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-add-images-to-story \
-                       --message \"{STORY_ID}\""]
+                       --message \"{STORY_ID}\" && \
+                     echo add-images-to-story `date` >> /data/events.log"]
           workingDir: /app
           securityContext:
             privileged: true

@@ -20,10 +20,12 @@ spec:
             - name: URL
               value: "$HTML_CAPTURE_URL{STORY_ID}"
           command: ["bash", "-c",
-                    "node index.js && \
+                    "echo html-capture `date` >> /data/events.log && \
+                     node index.js && \
                      gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-html-capture \
-                       --message \"{STORY_ID}\""]
+                       --message \"{STORY_ID}\" && \
+                     echo html-capture `date` >> /data/events.log"]
           workingDir: /app
           resources:
             limits:

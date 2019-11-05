@@ -11,7 +11,8 @@ spec:
         - name: pix-to-pix
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/pix-to-pix
           command: ["bash", "-c",
-                    "mv /data/inference /data/test_A && \
+                    "echo pix-to-pix `date` >> /data/events.log && \
+                     mv /data/inference /data/test_A && \
                      mkdir /models && \
                      gcsfuse \
                        --implicit-dirs \
@@ -21,7 +22,8 @@ spec:
                      mv /data/test_A /data/inference && \
                      gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-pix-to-pix \
-                       --message \"{STORY_ID}\""]
+                       --message \"{STORY_ID}\" && \
+                     echo pix-to-pix `date` >> /data/events.log"]
           workingDir: /app
           securityContext:
             privileged: true

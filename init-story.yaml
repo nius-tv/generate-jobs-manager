@@ -11,13 +11,15 @@ spec:
         - name: init-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
-                    "mkdir -p /data/html-capture && \
+                    "echo init-story `date` >> /data/events.log && \
+                     mkdir -p /data/html-capture && \
                      mkdir -p /data/inference && \
                      mkdir -p /data/inferred && \
                      mkdir -p /data/landmarks && \
                      gsutil -m cp -r gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/* /data && \
                      gcloud pubsub topics publish completed-init-story \
-                       --message \"{STORY_ID}\""]
+                       --message \"{STORY_ID}\" && \
+                     echo init-story `date` >> /data/events.log"]
           volumeMounts:
             - name: data
               mountPath: /data

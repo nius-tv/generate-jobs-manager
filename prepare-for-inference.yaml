@@ -11,7 +11,8 @@ spec:
         - name: prepare-for-inference
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/speech-to-landmarks
           command: ["bash", "-c",
-                    "mkdir /models && \
+                    "echo prepare-for-inference `date` >> /data/events.log && \
+                     mkdir /models && \
                      gcsfuse \
                        --implicit-dirs \
                        $MODELS_BUCKET_NAME \
@@ -19,7 +20,8 @@ spec:
                      python3 prepare_for_inference.py && \
                      gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-prepare-for-inference \
-                       --message \"{STORY_ID}\""]
+                       --message \"{STORY_ID}\" && \
+                     echo prepare-for-inference `date` >> /data/events.log"]
           workingDir: /app
           securityContext:
             privileged: true
