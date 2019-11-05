@@ -12,6 +12,7 @@ spec:
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
                     "python3 add_dynamic_overlay.py && \
+                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-add-dynamic-overlay-to-story \
                        --message \"{STORY_ID}\""]
           workingDir: /app

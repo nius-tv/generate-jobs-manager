@@ -11,7 +11,7 @@ spec:
         - name: end-story
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
-                    "gsutil -m cp -r /data/* gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
+                    "gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      rm -rf /data/* && \
                      gcloud pubsub topics publish completed-end-story \
                        --message \"{STORY_ID}\""]

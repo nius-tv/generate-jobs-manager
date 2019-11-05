@@ -17,6 +17,7 @@ spec:
                        $MODELS_BUCKET_NAME \
                        /models && \
                      python3 prepare_for_inference.py && \
+                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-prepare-for-inference \
                        --message \"{STORY_ID}\""]
           workingDir: /app

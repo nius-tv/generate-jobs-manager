@@ -20,6 +20,7 @@ spec:
                        -pix_fmt $PIXEL_FMT \
                        /data/story.$VIDEO_FMT && \
                      python3 extract_duration.py && \
+                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-rotate-video \
                        --message \"{STORY_ID}\""]
           workingDir: /app
