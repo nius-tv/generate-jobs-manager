@@ -43,6 +43,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-bg-to-story',
+		'next-job': 'calc-transitions'
+	},
+	{
+		'subscription': 'completed-calc-transitions',
 		'next-job': 'add-images-to-story'
 	},
 	{
