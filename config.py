@@ -67,10 +67,6 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-dynamic-overlay-to-story',
-		'next-job': 'add-music-to-story'
-	},
-	{
-		'subscription': 'completed-add-music-to-story',
 		'next-job': 'normalize-audio'
 	},
 	{
