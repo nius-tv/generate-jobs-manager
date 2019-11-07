@@ -27,12 +27,22 @@ spec:
               value: "$VIDEO_FMT"
           command: ["bash", "-c",
                     "echo add-music-to-story `date` >> /data/events.log && \
+                     mkdir /library && \
+                     gcsfuse \
+                       --implicit-dirs \
+                       $LIBRARY_BUCKET_NAME \
+                       /library && \
                      python3 add_music.py && \
                      gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-add-music-to-story \
                        --message \"{STORY_ID}\" && \
                      echo add-music-to-story `date` >> /data/events.log"]
           workingDir: /app
+          securityContext:
+            privileged: true
+            capabilities:
+              add:
+                - SYS_ADMIN
           resources:
             limits:
               cpu: "$NUM_CPUS"
