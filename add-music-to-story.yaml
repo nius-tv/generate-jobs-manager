@@ -1,0 +1,47 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {STORY_ID}-add-music-to-story
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: add-music-to-story
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
+          env:
+            - name: AUDIO_CODEC
+              value: "$AUDIO_CODEC"
+            - name: AUDIO_FMT
+              value: "$AUDIO_FMT"
+            - name: FPS
+              value: "$FPS"
+            - name: IMG_FMT
+              value: "$IMG_FMT"
+            - name: PIXEL_FMT
+              value: "$PIXEL_FMT"
+            - name: VIDEO_CODEC
+              value: "$VIDEO_CODEC"
+            - name: VIDEO_FMT
+              value: "$VIDEO_FMT"
+          command: ["bash", "-c",
+                    "echo add-music-to-story `date` >> /data/events.log && \
+                     python3 add_music.py && \
+                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
+                     gcloud pubsub topics publish completed-add-music-to-story \
+                       --message \"{STORY_ID}\" && \
+                     echo add-music-to-story `date` >> /data/events.log"]
+          workingDir: /app
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {STORY_ID}
+      restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0
