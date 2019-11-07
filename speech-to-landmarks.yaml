@@ -10,6 +10,21 @@ spec:
       containers:
         - name: speech-to-landmarks
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/speech-to-landmarks
+          env:
+            - name: AUDIO_CODEC
+              value: "$AUDIO_CODEC"
+            - name: AUDIO_FMT
+              value: "$AUDIO_FMT"
+            - name: FPS
+              value: "$FPS"
+            - name: IMG_FMT
+              value: "$IMG_FMT"
+            - name: PIXEL_FMT
+              value: "$PIXEL_FMT"
+            - name: VIDEO_CODEC
+              value: "$VIDEO_CODEC"
+            - name: VIDEO_FMT
+              value: "$VIDEO_FMT"
           command: ["bash", "-c",
                     "echo speech-to-landmarks `date` >> /data/events.log && \
                      mkdir /models && \
