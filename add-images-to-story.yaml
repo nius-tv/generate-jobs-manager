@@ -33,7 +33,6 @@ spec:
                        $LIBRARY_BUCKET_NAME \
                        /library && \
                      python3 add_images.py && \
-                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-add-images-to-story \
                        --message \"{STORY_ID}\" && \
                      echo add-images-to-story `date` >> /data/events.log"]

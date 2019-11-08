@@ -35,7 +35,6 @@ spec:
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
                        /data/story-with-audio.$VIDEO_FMT && \
-                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-add-audio-to-story \
                        --message \"{STORY_ID}\" && \
                      echo add-audio-to-story `date` >> /data/events.log"]

@@ -28,7 +28,6 @@ spec:
           command: ["bash", "-c",
                     "echo calc-transitions `date` >> /data/events.log && \
                      python3 calc_transitions.py && \
-                     gsutil copy /data/story.yaml gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-calc-transitions \
                        --message \"{STORY_ID}\" && \
                      echo calc-transitions `date` >> /data/events.log"]

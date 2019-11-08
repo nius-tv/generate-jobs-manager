@@ -34,7 +34,6 @@ spec:
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
                        /data/dynamic-overlay.$VIDEO_FMT && \
-                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-images-to-dynamic-overlay \
                        --message \"{STORY_ID}\" && \
                      echo images-to-dynamic-overlay `date` >> /data/events.log"]

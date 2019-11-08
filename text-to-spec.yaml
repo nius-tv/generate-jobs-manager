@@ -39,7 +39,6 @@ spec:
                        $MODELS_BUCKET_NAME \
                        /models && \
                      python3 inference.py && \
-                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-text-to-spec \
                        --message \"{STORY_ID}\" && \
                      echo text-to-spec `date` >> /data/events.log"]

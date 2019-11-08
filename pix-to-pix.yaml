@@ -35,7 +35,6 @@ spec:
                        /models && \
                      python3 inference.py && \
                      mv /data/test_A /data/inference && \
-                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-pix-to-pix \
                        --message \"{STORY_ID}\" && \
                      echo pix-to-pix `date` >> /data/events.log"]
