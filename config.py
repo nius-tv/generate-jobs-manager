@@ -23,6 +23,22 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-pix-to-pix',
+		'next-job': 'rotate-images'
+	},
+	{
+		'subscription': 'completed-rotate-images',
+		'next-job': 'extract-landmarks'
+	},
+	{
+		'subscription': 'completed-extract-landmarks',
+		'next-job': 'calculate-alignments'
+	},
+	{
+		'subscription': 'completed-calculate-alignments',
+		'next-job': 'align-frames'
+	},
+	{
+		'subscription': 'completed-align-frames',
 		'next-job': 'images-to-video'
 	},
 	{
@@ -31,10 +47,6 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-audio-to-story',
-		'next-job': 'rotate-video'
-	},
-	{
-		'subscription': 'completed-rotate-video',
 		'next-job': 'add-presenter-bg'
 	},
 	{
