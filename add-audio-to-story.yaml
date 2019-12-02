@@ -34,7 +34,7 @@ spec:
                        -c:a $AUDIO_CODEC \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
-                       /data/story-with-audio.$VIDEO_FMT && \
+                       /data/story.$VIDEO_FMT && \
                      gcloud pubsub topics publish completed-add-audio-to-story \
                        --message \"{STORY_ID}\" && \
                      echo add-audio-to-story `date` >> /data/events.log"]
