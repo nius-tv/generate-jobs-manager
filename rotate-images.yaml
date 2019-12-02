@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {STORY_ID}-rotate-video
+  name: {STORY_ID}-rotate-images
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0
   template:
     spec:
       containers:
-        - name: rotate-video
+        - name: rotate-images
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           env:
             - name: AUDIO_CODEC
@@ -26,18 +26,15 @@ spec:
             - name: VIDEO_FMT
               value: "$VIDEO_FMT"
           command: ["bash", "-c",
-                    "echo rotate-video `date` >> /data/events.log && \
+                    "echo rotate-images `date` >> /data/events.log && \
                      ffmpeg \
                        -y \
-                       -i /data/story-with-audio.$VIDEO_FMT \
+                       -i /data/inferred/%010d.$IMG_FMT \
                        -vf transpose=1 \
-                       -c:a $AUDIO_CODEC \
-                       -c:v $VIDEO_CODEC \
-                       -pix_fmt $PIXEL_FMT \
-                       /data/story.$VIDEO_FMT && \
+                       /data/frames/%010d.$IMG_FMT && \
                      gcloud pubsub topics publish completed-rotate-video \
                        --message \"{STORY_ID}\" && \
-                     echo rotate-video `date` >> /data/events.log"]
+                     echo rotate-images `date` >> /data/events.log"]
           workingDir: /app
           resources:
             limits:
