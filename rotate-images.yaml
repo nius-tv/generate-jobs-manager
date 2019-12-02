@@ -32,7 +32,7 @@ spec:
                        -i /data/inferred/%010d.$IMG_FMT \
                        -vf transpose=1 \
                        /data/frames/%010d.$IMG_FMT && \
-                     gcloud pubsub topics publish completed-rotate-video \
+                     gcloud pubsub topics publish completed-rotate-images \
                        --message \"{STORY_ID}\" && \
                      echo rotate-images `date` >> /data/events.log"]
           workingDir: /app
