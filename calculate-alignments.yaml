@@ -1,0 +1,33 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {STORY_ID}-calculate-alignments
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: calculate-alignments
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/align-face
+          env:
+            - name: IMG_FMT
+              value: "$IMG_FMT"
+          command: ["bash", "-c",
+                    "echo calculate-alignments `date` >> /data/events.log && \
+                     python3 calculate_alignments.py && \
+                     gcloud pubsub topics publish completed-calculate-alignments \
+                       --message \"{STORY_ID}\" && \
+                     echo calculate-alignments `date` >> /data/events.log"]
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {STORY_ID}
+      restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0
