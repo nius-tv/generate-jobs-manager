@@ -24,6 +24,7 @@ spec:
                      gcloud pubsub topics publish completed-extract-landmarks \
                        --message \"{STORY_ID}\" && \
                      echo extract-landmarks `date` >> /data/events.log"]
+          workingDir: /app
           resources:
             limits:
               cpu: "$NUM_CPUS"

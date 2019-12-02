@@ -19,6 +19,7 @@ spec:
                      gcloud pubsub topics publish completed-calculate-alignments \
                        --message \"{STORY_ID}\" && \
                      echo calculate-alignments `date` >> /data/events.log"]
+          workingDir: /app
           resources:
             limits:
               cpu: "$NUM_CPUS"
