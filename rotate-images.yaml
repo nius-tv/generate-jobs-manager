@@ -10,21 +10,6 @@ spec:
       containers:
         - name: rotate-images
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
-          env:
-            - name: AUDIO_CODEC
-              value: "$AUDIO_CODEC"
-            - name: AUDIO_FMT
-              value: "$AUDIO_FMT"
-            - name: FPS
-              value: "$FPS"
-            - name: IMG_FMT
-              value: "$IMG_FMT"
-            - name: PIXEL_FMT
-              value: "$PIXEL_FMT"
-            - name: VIDEO_CODEC
-              value: "$VIDEO_CODEC"
-            - name: VIDEO_FMT
-              value: "$VIDEO_FMT"
           command: ["bash", "-c",
                     "echo rotate-images `date` >> /data/events.log && \
                      ffmpeg \
@@ -35,7 +20,6 @@ spec:
                      gcloud pubsub topics publish completed-rotate-images \
                        --message \"{STORY_ID}\" && \
                      echo rotate-images `date` >> /data/events.log"]
-          workingDir: /app
           resources:
             limits:
               cpu: "$NUM_CPUS"
