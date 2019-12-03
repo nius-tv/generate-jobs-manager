@@ -43,14 +43,14 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-images-to-video',
-		'next-job': 'add-audio-to-story'
-	},
-	{
-		'subscription': 'completed-add-audio-to-story',
 		'next-job': 'add-mask'
 	},
 	{
 		'subscription': 'completed-add-mask',
+		'next-job': 'add-audio-to-story'
+	},
+	{
+		'subscription': 'completed-add-audio-to-story',
 		'next-job': 'add-presenter-bg'
 	},
 	{
