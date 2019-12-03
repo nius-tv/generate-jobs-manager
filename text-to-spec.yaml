@@ -15,22 +15,12 @@ spec:
               value: "$AUDIO_CODEC"
             - name: AUDIO_FMT
               value: "$AUDIO_FMT"
-            - name: FPS
-              value: "$FPS"
-            - name: IMG_FMT
-              value: "$IMG_FMT"
-            - name: PIXEL_FMT
-              value: "$PIXEL_FMT"
             - name: SAMPLE_RATE
               value: "$TEXT_TO_SPEC_SAMPLE_RATE"
             - name: SIGMA
               value: "$TEXT_TO_SPEC_SIGMA"
             - name: STRENGTH
               value: "$TEXT_TO_SPEC_STRENGTH"
-            - name: VIDEO_CODEC
-              value: "$VIDEO_CODEC"
-            - name: VIDEO_FMT
-              value: "$VIDEO_FMT"
           command: ["bash", "-c",
                     "echo text-to-spec `date` >> /data/events.log && \
                      mkdir /models && \
