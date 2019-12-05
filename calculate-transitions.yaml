@@ -1,14 +1,14 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {STORY_ID}-calc-transitions
+  name: {STORY_ID}-calculate-transitions
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0
   template:
     spec:
       containers:
-        - name: calc-transitions
+        - name: calculate-transitions
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           env:
             - name: AUDIO_CODEC
@@ -26,11 +26,11 @@ spec:
             - name: VIDEO_FMT
               value: "$VIDEO_FMT"
           command: ["bash", "-c",
-                    "echo calc-transitions `date` >> /data/events.log && \
-                     python3 calc_transitions.py && \
-                     gcloud pubsub topics publish completed-calc-transitions \
+                    "echo calculate-transitions `date` >> /data/events.log && \
+                     python3 calculate_transitions.py && \
+                     gcloud pubsub topics publish completed-calculate-transitions \
                        --message \"{STORY_ID}\" && \
-                     echo calc-transitions `date` >> /data/events.log"]
+                     echo calculate-transitions `date` >> /data/events.log"]
           workingDir: /app
           resources:
             limits:

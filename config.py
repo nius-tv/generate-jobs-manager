@@ -59,10 +59,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-bg-to-story',
-		'next-job': 'calc-transitions'
+		'next-job': 'calculate-transitions'
 	},
 	{
-		'subscription': 'completed-calc-transitions',
+		'subscription': 'completed-calculate-transitions',
 		'next-job': 'add-images-to-story'
 	},
 	{
