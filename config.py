@@ -87,6 +87,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-normalize-audio',
+		'next-job': 'export-story'
+	},
+	{
+		'subscription': 'completed-export-story',
 		'next-job': 'end-story'
 	},
 	{

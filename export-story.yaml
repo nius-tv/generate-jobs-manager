@@ -1,0 +1,37 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: {STORY_ID}-export-story
+spec:
+  backoffLimit: 0
+  ttlSecondsAfterFinished: 0
+  template:
+    spec:
+      containers:
+        - name: export-story
+          image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
+          command: ["bash", "-c",
+                    "echo export-story `date` >> /data/events.log && \
+                     ffmpeg \
+                       -y \
+                       -i normalized-story.mov \
+                       -c:v libx264 \
+                       -preset veryslow \
+                       -movflags +faststart \
+                       -pix_fmt yuv420p \
+                     story.mp4 && \
+                     gcloud pubsub topics publish completed-export-story \
+                       --message \"{STORY_ID}\" && \
+                     echo export-story `date` >> /data/events.log"]
+          resources:
+            limits:
+              cpu: "$NUM_CPUS"
+          volumeMounts:
+            - name: data
+              mountPath: /data
+              subPath: {STORY_ID}
+      restartPolicy: Never
+      volumes:
+        - name: data
+          hostPath:
+            path: /mnt/disks/ssd0
