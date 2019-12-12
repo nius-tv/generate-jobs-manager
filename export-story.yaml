@@ -14,12 +14,12 @@ spec:
                     "echo export-story `date` >> /data/events.log && \
                      ffmpeg \
                        -y \
-                       -i normalized-story.mov \
+                       -i /data/normalized-story.mov \
                        -c:v libx264 \
                        -preset veryslow \
                        -movflags +faststart \
                        -pix_fmt yuv420p \
-                     story.mp4 && \
+                     /data/story.mp4 && \
                      gcloud pubsub topics publish completed-export-story \
                        --message \"{STORY_ID}\" && \
                      echo export-story `date` >> /data/events.log"]
