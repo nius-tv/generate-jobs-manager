@@ -91,6 +91,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-export-story',
+		'next-job': 'captions-generator'
+	},
+	{
+		'subscription': 'completed-captions-generator',
 		'next-job': 'end-story'
 	},
 	{
