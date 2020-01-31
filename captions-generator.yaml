@@ -12,7 +12,7 @@ spec:
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/captions-generator
           command: ["bash", "-c",
                     "echo captions-generator `date` >> /data/events.log && \
-                     python3 generate_captions.py && \
+                     python3 captions.py && \
                      gcloud pubsub topics publish completed-captions-generator \
                        --message \"{STORY_ID}\" && \
                      echo captions-generator `date` >> /data/events.log"]
