@@ -71,6 +71,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-category-logo-to-story',
+		'next-job': 'captions-generator'
+	},
+	{
+		'subscription': 'completed-captions-generator',
 		'next-job': 'html-capture'
 	},
 	{
@@ -91,10 +95,6 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-export-story',
-		'next-job': 'captions-generator'
-	},
-	{
-		'subscription': 'completed-captions-generator',
 		'next-job': 'end-story'
 	},
 	{
