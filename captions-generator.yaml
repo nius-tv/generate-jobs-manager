@@ -13,6 +13,7 @@ spec:
           command: ["bash", "-c",
                     "echo captions-generator `date` >> /data/events.log && \
                      python3 captions.py && \
+                     gsutil copy /data/captions.vtt gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/captions.vtt && \
                      gcloud pubsub topics publish completed-captions-generator \
                        --message \"{STORY_ID}\" && \
                      echo captions-generator `date` >> /data/events.log"]
