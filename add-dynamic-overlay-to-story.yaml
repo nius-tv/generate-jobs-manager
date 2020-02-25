@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {STORY_ID}-add-dynamic-overlay-to-story
+  name: {STORY_ID}-add-dynamic-overlay
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

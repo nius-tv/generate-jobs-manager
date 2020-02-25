@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {STORY_ID}-images-to-dynamic-overlay
+  name: {STORY_ID}-images-to-overlay
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0

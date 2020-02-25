@@ -1,7 +1,7 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: {STORY_ID}-add-images-to-story
+  name: {STORY_ID}-images-to-story
 spec:
   backoffLimit: 0
   ttlSecondsAfterFinished: 0
