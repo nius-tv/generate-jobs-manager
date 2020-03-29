@@ -12,7 +12,6 @@ spec:
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
                     "echo init-story `date` >> /data/events.log && \
-                     mkdir -p /data/aligned && \
                      mkdir -p /data/frames && \
                      mkdir -p /data/html-capture && \
                      mkdir -p /data/inference && \

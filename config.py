@@ -27,18 +27,6 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-rotate-images',
-		'next-job': 'extract-landmarks'
-	},
-	{
-		'subscription': 'completed-extract-landmarks',
-		'next-job': 'calculate-alignments'
-	},
-	{
-		'subscription': 'completed-calculate-alignments',
-		'next-job': 'align-frames'
-	},
-	{
-		'subscription': 'completed-align-frames',
 		'next-job': 'images-to-video'
 	},
 	{

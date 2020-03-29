@@ -15,7 +15,7 @@ spec:
                      ffmpeg \
                        -y \
                        -framerate $FPS \
-                       -i /data/aligned/%010d.$IMG_FMT \
+                       -i /data/frames/%010d.$IMG_FMT \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
                        /data/story-no-audio.$VIDEO_FMT && \
