@@ -31,6 +31,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-images-to-video',
+		'next-job': 'adjust-anchor'
+	},
+	{
+		'subscription': 'completed-adjust-anchor',
 		'next-job': 'add-mask'
 	},
 	{
