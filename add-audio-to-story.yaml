@@ -15,7 +15,7 @@ spec:
                      ffmpeg \
                        -y \
                        -i /data/audio.$AUDIO_FMT \
-                       -i /data/story-with-mask.$VIDEO_FMT \
+                       -i /data/animated-anchor.$VIDEO_FMT \
                        -c:a $AUDIO_CODEC \
                        -c:v $VIDEO_CODEC \
                        -pix_fmt $PIXEL_FMT \
