@@ -11,6 +11,8 @@ spec:
         - name: pix-to-pix
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/pix-to-pix
           env:
+            - name: FPS
+              value: "$FPS"
             - name: IMG_FMT
               value: "$IMG_FMT"
           command: ["bash", "-c",
