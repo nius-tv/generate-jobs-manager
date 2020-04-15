@@ -6,7 +6,7 @@ RUN apt-get install -y python3.5
 RUN apt-get install -y python3-pip
 
 RUN pip3 install envsubst==0.1.4
-RUN pip3 install google-cloud-pubsub==1.0.2
+RUN pip3 install google-cloud-pubsub==1.4.2
 
 ADD . /app
 
