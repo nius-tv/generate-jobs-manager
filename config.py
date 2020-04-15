@@ -66,7 +66,7 @@ JOBS = [
 		'next-job': 'add-category-logo-to-story'
 	},
 	{
-		'subscription': 'completed-add-category-logo-to-story',
+		'subscription': 'completed-speech-to-landmarks-2',
 		'next-job': 'captions-generator'
 	},
 	{
