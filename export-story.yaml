@@ -26,7 +26,7 @@ spec:
                      echo export-story `date` >> /data/events.log"]
           resources:
             limits:
-              cpu: "$NUM_CPUS"
+              cpu: 3
           volumeMounts:
             - name: data
               mountPath: /data
