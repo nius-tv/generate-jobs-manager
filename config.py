@@ -19,6 +19,10 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-prepare-for-inference',
+		'next-job': 'calculate-transitions'
+	},
+	{
+		'subscription': 'completed-calculate-transitions',
 		'next-job': 'pix-to-pix'
 	},
 	{
@@ -55,10 +59,6 @@ JOBS = [
 	},
 	{
 		'subscription': 'completed-add-bg-to-story',
-		'next-job': 'calculate-transitions'
-	},
-	{
-		'subscription': 'completed-calculate-transitions',
 		'next-job': 'add-images-to-story'
 	},
 	{
