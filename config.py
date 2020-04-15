@@ -74,7 +74,7 @@ JOBS = [
 		'next-job': 'add-category-logo-to-story'
 	},
 	{
-		'subscription': 'add-category-logo-to-story',
+		'subscription': 'completed-add-category-logo-to-story',
 		'next-job': 'images-to-dynamic-overlay'
 	},
 	{
