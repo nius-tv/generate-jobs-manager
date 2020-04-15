@@ -27,6 +27,8 @@ spec:
                      python3 speech_to_landmarks.py && \
                      gcloud pubsub topics publish completed-speech-to-landmarks \
                        --message \"{STORY_ID}\" && \
+                     gcloud pubsub topics publish completed-speech-to-landmarks-2 \
+                       --message \"{STORY_ID}\" && \
                      echo speech-to-landmarks `date` >> /data/events.log"]
           workingDir: /app
           securityContext:
