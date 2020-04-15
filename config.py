@@ -22,6 +22,14 @@ JOBS = [
 		'next-job': 'calculate-transitions'
 	},
 	{
+		'subscription': 'completed-speech-to-landmarks-2',
+		'next-job': 'captions-generator'
+	},
+	{
+		'subscription': 'completed-captions-generator',
+		'next-job': 'html-capture'
+	},
+	{
 		'subscription': 'completed-calculate-transitions',
 		'next-job': 'pix-to-pix'
 	},
@@ -66,15 +74,7 @@ JOBS = [
 		'next-job': 'add-category-logo-to-story'
 	},
 	{
-		'subscription': 'completed-speech-to-landmarks-2',
-		'next-job': 'captions-generator'
-	},
-	{
-		'subscription': 'completed-captions-generator',
-		'next-job': 'html-capture'
-	},
-	{
-		'subscription': 'completed-html-capture',
+		'subscription': 'add-category-logo-to-story',
 		'next-job': 'images-to-dynamic-overlay'
 	},
 	{
