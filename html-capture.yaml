@@ -22,6 +22,7 @@ spec:
           command: ["bash", "-c",
                     "echo html-capture `date` >> /data/events.log && \
                      node index.js && \
+                     touch /data/html-capture-ready && \
                      gcloud pubsub topics publish completed-html-capture \
                        --message \"{STORY_ID}\" && \
                      echo html-capture `date` >> /data/events.log"]

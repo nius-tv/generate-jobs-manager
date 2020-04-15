@@ -12,7 +12,7 @@ spec:
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
                     "echo images-to-dynamic-overlay `date` >> /data/events.log && \
-                     while [ ! -f /data/story-with-category.$VIDEO_FMT ]; do sleep 1; done && \
+                     while [ ! -f /data/html-capture-ready ]; do sleep 1; done && \
                      ffmpeg \
                        -y \
                        -framerate $FPS \
