@@ -33,7 +33,6 @@ spec:
                        $LIBRARY_BUCKET_NAME \
                        /library && \
                      python3 add_category_logo.py && \
-                     gsutil copy /data/story.yaml gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
                      gcloud pubsub topics publish completed-add-category-logo-to-story \
                        --message \"{STORY_ID}\" && \
                      echo add-category-logo-to-story `date` >> /data/events.log"]
