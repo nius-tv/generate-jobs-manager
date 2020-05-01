@@ -55,7 +55,7 @@ spec:
               value: "$VIDEO_FMT"
           command: ["bash", "-c",
                     "mkdir -p /data/k8s && \
-                     python3 jobs_manager.py"]
+                    ./jobs_manager.sh"]
           workingDir: /app
           volumeMounts:
             - name: data
