@@ -98,4 +98,4 @@ JOBS = [
 	}
 ]
 COMPUTE_PROJECT_NAME = os.environ.get('COMPUTE_PROJECT_NAME')
-TMP_STORY_DIR = '/tmp'
+TMP_STORY_DIR = '/data/k8s'
