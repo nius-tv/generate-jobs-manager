@@ -58,11 +58,6 @@ def subscribe(job):
 	subscription_path = subscriber.subscription_path(COMPUTE_PROJECT_NAME, subscription)
 	subscriber.subscribe(subscription_path, callback=callback)
 
-	time.sleep(30)
-
-	subscriber.close()
-	print('closing subscription to:', subscription)
-
 
 if __name__ == '__main__':
 	for job in JOBS:
@@ -77,4 +72,4 @@ if __name__ == '__main__':
 	# "drops" connection to pubsub.
 	# Adding a time sleep before existing allows for this script to
 	# for a period of time before k8s reschedules the pod.
-	time.sleep(60 * 5)
+	time.sleep(60 * 2)
