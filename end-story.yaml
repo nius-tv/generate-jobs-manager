@@ -12,7 +12,12 @@ spec:
           image: us.gcr.io/$ARTEFACTS_PROJECT_NAME/video-composer
           command: ["bash", "-c",
                     "echo end-story `date` >> /data/events.log && \
-                     gsutil -m rsync -r /data gs://${GENERATED_BUCKET_NAME}/{STORY_ID} && \
+                     gsutil copy /data/audio.wav              gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/ && \
+                     gsutil copy /data/captions.vtt           gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/ && \
+                     gsutil copy /data/presenter-bg-story.mov gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/ && \
+                     gsutil copy /data/story.mov              gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/ && \
+                     gsutil copy /data/story.mp4              gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/ && \
+                     gsutil copy /data/story.yaml             gs://${GENERATED_BUCKET_NAME}/{STORY_ID}/ && \
                      rm -rf /data/* && \
                      gcloud pubsub topics publish completed-end-story \
                        --message \"{STORY_ID}\" && \
