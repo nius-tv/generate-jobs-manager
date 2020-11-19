@@ -20,7 +20,25 @@ spec:
                        -preset veryslow \
                        -movflags +faststart \
                        -pix_fmt yuv420p \
-                     /data/story.mp4 && \
+                     /data/normalized-story.mp4 && \
+                     ffmpeg \
+                       -y \
+                       -i /data/dynamic-overlay.mov \
+                       -vf setdar=1:2 \
+                       -c:v libx264 \
+                       -preset veryslow \
+                       -movflags +faststart \
+                       -pix_fmt yuv420p \
+                     /data/dynamic-overlay.mp4 && \
+                     ffmpeg \
+                       -y \
+                       -i /data/composed-story.mov \
+                       -vf setdar=1:2 \
+                       -c:v libx264 \
+                       -preset veryslow \
+                       -movflags +faststart \
+                       -pix_fmt yuv420p \
+                     /data/composed-story.mp4 && \
                      gcloud pubsub topics publish completed-export-story \
                        --message \"{STORY_ID}\" && \
                      echo export-story `date` >> /data/events.log"]
